@@ -8,7 +8,10 @@ namespace Spotivy
 {
     internal class Playlist
     {
-        private List<Song> songs;
+        private string name;
+        private List<Song> songs = new();
+        
+     
 
         internal List<Song> Songs { get => songs; set => songs = value; }
     }

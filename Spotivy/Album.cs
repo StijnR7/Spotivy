@@ -9,8 +9,15 @@ namespace Spotivy
     internal class Album
     {
         private string title;
-        private List<Song> songs;
-        private List<Artist> artists;
+        private List<Song> songs = new();
+        private List<Artist> artists = new();
+
+        public Album(string title, List<Song> songs, List<Artist> artists)
+        {
+            this.title = title;
+            this.songs = songs;
+            this.artists = artists;
+        }
 
         public string Title { get => title; set => title = value; }
         internal List<Song> Songs { get => songs; set => songs = value; }
