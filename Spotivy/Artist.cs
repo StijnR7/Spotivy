@@ -12,11 +12,9 @@ namespace Spotivy
         private List<Song> songs = new();
         private List<Album> albums = new();
 
-        public Artist(string name, List<Song> songs, List<Album> albums)
+        public Artist(string name)
         {
             this.name = name;
-            this.songs = songs;
-            this.album = albums;
         }
 
         public string Name { get => name; set => name = value; }
