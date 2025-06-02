@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    internal class Genre
+    public enum Genre
     {
+        Rock,
+        Hoi
     }
 }

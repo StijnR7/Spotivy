@@ -1,0 +1,15 @@
+C:\Users\nijme\source\repos\Spotivy\Spotivy\bin\Debug\net8.0\Spotivy.exe
+C:\Users\nijme\source\repos\Spotivy\Spotivy\bin\Debug\net8.0\Spotivy.deps.json
+C:\Users\nijme\source\repos\Spotivy\Spotivy\bin\Debug\net8.0\Spotivy.runtimeconfig.json
+C:\Users\nijme\source\repos\Spotivy\Spotivy\bin\Debug\net8.0\Spotivy.dll
+C:\Users\nijme\source\repos\Spotivy\Spotivy\bin\Debug\net8.0\Spotivy.pdb
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.AssemblyInfoInputs.cache
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.AssemblyInfo.cs
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.csproj.CoreCompileInputs.cache
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.sourcelink.json
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.dll
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\refint\Spotivy.dll
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.pdb
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\Spotivy.genruntimeconfig.cache
+C:\Users\nijme\source\repos\Spotivy\Spotivy\obj\Debug\net8.0\ref\Spotivy.dll
