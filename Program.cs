@@ -12,7 +12,7 @@ namespace Spotivy
             Console.WriteLine(
                 "Welcome to Spotivy!\n" +
                 "[1] Search song\n" +
-                "[2] Add song\n" +
+                 "[2] Add song\n" +
                 "[3] Add artist");
 
 
