@@ -25,5 +25,32 @@ namespace Spotivy
 
         }
 
+        public Artist ChooseArtistOption(List<Artist> artists) {
+            for (int i = 0; i < artists.Count; i++) { 
+            
+                Console.WriteLine($"[{i}]: {artists[i].Name}");
+            }
+            string choice = Console.ReadLine();
+            int n = -1;
+            int.TryParse(choice, out n);
+            if (n == -1) { Console.WriteLine("Invalid choice"); return null; }
+            else { return artists[n];  }
+        
+        }
+        public Album chooseAlbum(List<Album> albums)
+        {
+            for (int i = 0; i < albums.Count; i++)
+            {
+
+                Console.WriteLine($"[{i}]: {albums[i].Title}");
+            }
+            string choice = Console.ReadLine();
+            int n = -1;
+            int.TryParse(choice, out n);
+            if (n == -1) { Console.WriteLine("Invalid choice"); return null; }
+            else { return albums[n]; }
+
+        }
+
     }
 }
