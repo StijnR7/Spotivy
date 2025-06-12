@@ -48,7 +48,13 @@ namespace Spotivy
                     "[1] Search song\n" +
                     "[2] Add song\n" +
                     "[3] Add artist\n" +
-                    "[4] Account Details");
+                    "[4] Account Details\n" +
+                    "[5] New playlist\n" +
+                    "[6] Add song to playlist\n" +
+                    "[7] View playlist\n"
+                    
+                    
+                    );
 
 
                 string choice = Console.ReadLine();
@@ -85,9 +91,9 @@ namespace Spotivy
                         switch (num)
                         {
                             case 1:
-                                Console.WriteLine("Now playing: " + song.Title);
+                               
                                 currentUser.SongPlaying = song;
-
+                                song.PlaySong();
                                 break;
                             case 2:
                                 //Add user functionality
@@ -107,7 +113,7 @@ namespace Spotivy
                         break;
                     case 2:
                         Console.WriteLine("Song title?");
-                        string title = Console.ReadLine();
+                        string title = Console.ReadLine().ToLower();
                         List<Artist> artists = new();
                         string artistName = "";
                         Console.WriteLine("Artist(s) name(s)?\n Type: 'end' to stop");
@@ -153,7 +159,7 @@ namespace Spotivy
 
 
                             Console.WriteLine("Album name?");
-                            albumNameChosen = Console.ReadLine();
+                            albumNameChosen = Console.ReadLine().ToLower();
                             Album tempAlbum = new(albumNameChosen, artists);
                             TheAlbum = tempAlbum;
                             foreach (Artist i in artists)
@@ -181,6 +187,28 @@ namespace Spotivy
                         break;
                     case 4:
                         data.ShowAccountDetails(currentUser);
+                        break;
+                    case 5:
+                        Console.WriteLine("Playlist name: ");
+                        Playlist playlist = new(Console.ReadLine());
+                        currentUser.Playlists.Add(playlist);
+                        
+                        break;
+                    case 6:
+                        Playlist thePlaylist = currentUser.ChoosePlaylist();
+                        Console.WriteLine("Song name");
+                        string songName=  Console.ReadLine();
+                        Song theSong = data.FindSong(songName);
+                        if(theSong == null) { break; }
+                        thePlaylist.Songs.Add(theSong); 
+                        break;
+
+                    case 7:
+                        Playlist theChosenPlaylist = currentUser.ChoosePlaylist();
+                        Console.WriteLine("Choose a song");
+                        Song chosenSong = theChosenPlaylist.ChooseSong();
+                        currentUser.SongPlaying = chosenSong;
+                        chosenSong.PlaySong();
                         break;
                 }
             }

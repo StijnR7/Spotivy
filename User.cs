@@ -23,6 +23,15 @@ namespace Spotivy
             this.Password = password;
         }
 
+        public Playlist ChoosePlaylist() {
+            for (int i = 0; i < playlists.Count; i++) {
+                Console.WriteLine($"[{i}]: {playlists[i].Name}");
+            }
+            Console.WriteLine("Choose playlist by number: ");
+            int choice = int.Parse( Console.ReadLine() );   
+            return playlists[choice];
+        }
+
         public string Username { get => username; set => username = value; }
         public Song SongPlaying { get => songPlaying; set => songPlaying = value; }
         public string Password { get => password; set => password = value; }

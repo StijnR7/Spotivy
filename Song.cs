@@ -26,6 +26,10 @@ namespace Spotivy
                 Console.WriteLine(artist.Name);
             }
         }
+        public void PlaySong() {
+            Console.WriteLine($"Now playing: {title}");
+        
+        }
         public string Title { get => title; set => title = value; }
         public string Genre { get => genre; set => genre = value; }
         internal List<Artist> Artists { get => artists; set => artists = value; }
