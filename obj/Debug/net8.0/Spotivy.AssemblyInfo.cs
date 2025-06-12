@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Spotivy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a9e8c01758eeabf81ad6a1a4049bd54861dfe39")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8660d5378d773499b2e2aec325cdafc48b374e2")]
+>>>>>>> stijn
 [assembly: System.Reflection.AssemblyProductAttribute("Spotivy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Spotivy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
