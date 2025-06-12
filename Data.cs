@@ -11,12 +11,19 @@ namespace Spotivy
 
         public List<Song> AllSongs = new();
         public List<Artist> Artists = new();
+        private List<User> users = new();
+
+        internal List<User> Users { get => users; set => users = value; }
 
 
+        public User LoginUser(string user, string pass)
+        {
 
+            return users.Where(i => i.Username == user).Where(i => i.Password == pass).FirstOrDefault();
+        }
         public Song FindSong(string songName)
         {
-            return AllSongs.Where(i => i.Title== songName).FirstOrDefault();
+            return AllSongs.Where(i => i.Title == songName).FirstOrDefault();
             
         }
         public Artist FindArtist(string artistName)
@@ -50,6 +57,19 @@ namespace Spotivy
             if (n == -1) { Console.WriteLine("Invalid choice"); return null; }
             else { return albums[n]; }
 
+        }
+        public string ChooseGenre() {
+            for (int i = 0; i < Enum.GetNames(typeof(Genre)).Length; i++)
+            {
+                Console.WriteLine($"{i} {Enum.GetNames(typeof(Genre))[i]}");
+
+            }
+            int genreChoice = int.Parse(Console.ReadLine());
+            return Enum.GetNames(typeof(Genre))[genreChoice];
+        }
+        public void ShowAccountDetails(User user) {
+
+            Console.WriteLine($"Username: {user.Username}\n Password: {user.Password}");
         }
 
     }

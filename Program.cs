@@ -8,13 +8,47 @@ namespace Spotivy
         {
             Data data = new Data();
             bool go = true;
-            while (go)
+           
+            User currentUser = new("", "");
+            bool go2 = true;
+
+            while (go2) {
+                Console.WriteLine("[1] Login\n[2] Sign up");
+                switch (int.Parse(Console.ReadLine())){
+                case 1:
+                    Console.WriteLine("Username?: ");
+                    string user = Console.ReadLine();
+                    Console.WriteLine("Password");
+                    string pass = Console.ReadLine();
+
+                    currentUser = data.LoginUser(user, pass);
+                        Console.WriteLine("Type 'end' to continue");
+                    go2 = Console.ReadLine() != "end";
+                     break;
+                case 2:
+                    Console.WriteLine("Username? : ");
+                    string username = Console.ReadLine();
+                    Console.WriteLine("Password? : ");
+                    string password = Console.ReadLine();
+
+
+                    User newUser = new(username, password);
+                    data.Users.Add(newUser);
+                    currentUser = newUser;
+                        Console.WriteLine("Type 'end' to continue");
+                        go2 = Console.ReadLine() != "end";
+                        break;
+
+            }
+            }
+            while (go && currentUser.Username != "")
             {
                 Console.WriteLine(
                     "Welcome to Spotivy!\n" +
                     "[1] Search song\n" +
                     "[2] Add song\n" +
-                    "[3] Add artist");
+                    "[3] Add artist\n" +
+                    "[4] Account Details");
 
 
                 string choice = Console.ReadLine();
@@ -52,6 +86,7 @@ namespace Spotivy
                         {
                             case 1:
                                 Console.WriteLine("Now playing: " + song.Title);
+                                currentUser.SongPlaying = song;
 
                                 break;
                             case 2:
@@ -130,13 +165,8 @@ namespace Spotivy
                        
                        
                         Console.WriteLine("Genre?");
-                        for (int i = 0; i < Enum.GetNames(typeof(Genre)).Length; i++)
-                        {
-                            Console.WriteLine($"{i} {Enum.GetNames(typeof(Genre))[i]}");
-
-                        }
-                        int genreChoice = int.Parse(Console.ReadLine());
-                        string chosenGenre = Enum.GetNames(typeof(Genre))[genreChoice];
+                       
+                        string chosenGenre = data.ChooseGenre();
 
                         Song finalSong = new(title, artists, chosenGenre, TheAlbum);
                         data.AllSongs.Add(finalSong);
@@ -148,6 +178,9 @@ namespace Spotivy
 
                         Artist artist = new Artist(Console.ReadLine().ToLower());
                         data.Artists.Add(artist);
+                        break;
+                    case 4:
+                        data.ShowAccountDetails(currentUser);
                         break;
                 }
             }
