@@ -22,5 +22,20 @@ namespace Spotivy
         public string Title { get => title; set => title = value; }
         internal List<Song> Songs { get => songs; set => songs = value; }
         internal List<Artist> Artists { get => artists; set => artists = value; }
+
+        public Song chooseSong()
+        {
+            for (int i = 0; i < songs.Count; i++)
+            {
+
+                Console.WriteLine($"[{i}]: {songs[i].Title}");
+            }
+            string choice = Console.ReadLine();
+            int n = -1;
+            int.TryParse(choice, out n);
+            if (n == -1) { Console.WriteLine("Invalid choice"); return null; }
+            else { return songs[n]; }
+
+        }
     }
 }

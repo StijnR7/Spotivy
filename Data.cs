@@ -44,20 +44,7 @@ namespace Spotivy
             else { return artists[n];  }
         
         }
-        public Album chooseAlbum(List<Album> albums)
-        {
-            for (int i = 0; i < albums.Count; i++)
-            {
-
-                Console.WriteLine($"[{i}]: {albums[i].Title}");
-            }
-            string choice = Console.ReadLine();
-            int n = -1;
-            int.TryParse(choice, out n);
-            if (n == -1) { Console.WriteLine("Invalid choice"); return null; }
-            else { return albums[n]; }
-
-        }
+       
         public string ChooseGenre() {
             for (int i = 0; i < Enum.GetNames(typeof(Genre)).Length; i++)
             {
@@ -71,6 +58,48 @@ namespace Spotivy
 
             Console.WriteLine($"Username: {user.Username}\n Password: {user.Password}");
         }
+        public Artist ChooseArtist() {
+            for (int i = 0; i < Artists.Count; i++)
+            {
 
+                Console.WriteLine($"[{i}]: {Artists[i].Name}");
+            }
+            string choice = Console.ReadLine();
+            int n = -1;
+            int.TryParse(choice, out n);
+            if (n == -1) { Console.WriteLine("Invalid choice"); return null; }
+            else { return Artists[n]; }
+        }
+
+        public User ChooseUser() {
+
+            for (int i = 0; i < users.Count; i++)
+            {
+
+                Console.WriteLine($"[{i}]: {users[i].Username}");
+            }
+            string choice = Console.ReadLine();
+            int n = -1;
+            int.TryParse(choice, out n);
+            if (n == -1) { Console.WriteLine("Invalid choice"); return null; }
+            else { return users[n]; }
+        }
+        public void ComparePlaylists(Playlist list1, Playlist list2) { 
+            List<Song> incommon = new List<Song>();
+
+            foreach (Song song in list1.Songs) {
+                foreach (Song song2 in list2.Songs) {
+                    if (song == song2) {
+                        incommon.Add(song);
+                    }
+                
+                }
+            }
+            for (int i = 0; i < incommon.Count; i++) {
+                Console.WriteLine($"[{i}]: {incommon[i].Title}");
+            }
+        }
     }
+
+
 }
