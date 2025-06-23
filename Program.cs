@@ -11,7 +11,9 @@ namespace Spotivy
            
             User currentUser = new("", "");
             bool go2 = true;
-
+            bool go3 = true;
+            while (go3) { 
+              
             while (go2) {
                 Console.WriteLine("[1] Login\n[2] Sign up");
                 switch (int.Parse(Console.ReadLine())){
@@ -24,7 +26,8 @@ namespace Spotivy
                     currentUser = data.LoginUser(user, pass);
                         Console.WriteLine("Type 'end' to continue");
                     go2 = Console.ReadLine() != "end";
-                     break;
+                            go = true;
+                            break;
                 case 2:
                     Console.WriteLine("Username? : ");
                     string username = Console.ReadLine();
@@ -37,6 +40,7 @@ namespace Spotivy
                     currentUser = newUser;
                         Console.WriteLine("Type 'end' to continue");
                         go2 = Console.ReadLine() != "end";
+                            go = true;
                         break;
 
             }
@@ -51,11 +55,21 @@ namespace Spotivy
                     "[4] Account Details\n" +
                     "[5] New playlist\n" +
                     "[6] Add song to playlist\n" +
-                    "[7] View playlist\n"
+                    "[7] View playlist\n" +
+                    "[8] View album\n" +
+                    "[9] View playing song\n" +
+                    "[10] Pause/continue song\n" +
+                    "[11] Play album\n" +
+                    "[12] Log out\n" +
+                    "[13] Add friend\n" +
+                    "[14] View friends playlist\n" +
+                    "[15] View friends\n" +
+                    "[16] Compare playlists\n" +
+                    "[17] Play playlist"
                     
                     
                     );
-
+                
 
                 string choice = Console.ReadLine();
                 int n = 0;
@@ -82,8 +96,7 @@ namespace Spotivy
                         Console.WriteLine(
                             "Song found!\n" +
                             "[1] Play song\n" +
-                            "[2] Add song to playlist\n" +
-                            "[3] Details");
+                            "[2] Details\n");
                         int num = 0;
                         int.TryParse(Console.ReadLine(), out num);
                         if (num == 0) { Console.WriteLine("Invalid input"); break; }
@@ -96,17 +109,15 @@ namespace Spotivy
                                 song.PlaySong();
                                 break;
                             case 2:
-                                //Add user functionality
-                                break;
-                            case 3:
-                                Console.WriteLine(
-                                    $"Title: {song.Title}\n" +
-                                    $"Album: {song.Album.Title}\n" +
-                                    $"Genre: {song.Genre}\n" +
-                                    $"Artists: "
-                                    );
-                                song.ShowArtists();
-                                break;
+                                    Console.WriteLine(
+                                      $"Title: {song.Title}\n" +
+                                      $"Album: {song.Album.Title}\n" +
+                                      $"Genre: {song.Genre}\n" +
+                                      $"Artists: "
+                                      );
+                                    song.ShowArtists();
+                                    break;
+                            
 
                         }
 
@@ -148,7 +159,7 @@ namespace Spotivy
                         {
                             Console.WriteLine("What artist?");
                             Artist chosenArtist = data.ChooseArtistOption(artists);
-                            Album chosenAlbum = data.chooseAlbum(chosenArtist.Albums);
+                            Album chosenAlbum = chosenArtist.chooseAlbum();
                             TheAlbum = chosenAlbum;
 
                         }
@@ -175,6 +186,7 @@ namespace Spotivy
                         string chosenGenre = data.ChooseGenre();
 
                         Song finalSong = new(title, artists, chosenGenre, TheAlbum);
+                        TheAlbum.Songs.Add(finalSong);  
                         data.AllSongs.Add(finalSong);
 
 
@@ -210,7 +222,114 @@ namespace Spotivy
                         currentUser.SongPlaying = chosenSong;
                         chosenSong.PlaySong();
                         break;
-                }
+                    case 8:
+                        Artist artistAl = data.ChooseArtist();
+                        Album albumchosen = artistAl.chooseAlbum();
+                        Song chosenSong1 = albumchosen.chooseSong();
+                        currentUser.SongPlaying = chosenSong1;
+                        chosenSong1.PlaySong();
+                        
+
+                        break;
+                    case 9:
+                        if (currentUser.SongPlaying != null && !currentUser.Paused)
+                        {
+                            currentUser.SongPlaying.PlaySong();
+
+                        }
+                        else {
+                            Console.WriteLine("No song playing.");
+                        }
+                        break;
+                     case 10:
+                        currentUser.Paused = !currentUser.Paused;
+                        string text = currentUser.Paused ? "Paused song" : "Continued playing";
+                        Console.WriteLine(text);
+                        break;
+                    case 11:
+                        Artist TheArtistChosen = data.ChooseArtist();
+                        Album theAlbumChosen = TheArtistChosen.chooseAlbum();
+
+                        bool continuePlaying = true;
+                        Random rand = new Random();
+                        while (continuePlaying) {
+                            currentUser.SongPlaying = theAlbumChosen.Songs[rand.Next(theAlbumChosen.Songs.Count)];
+                            currentUser.SongPlaying.PlaySong();
+                            Console.WriteLine(
+                                "[0] Next song\n" +
+                                "[1] Stop");
+
+                            int optionChosen = int.Parse(Console.ReadLine());
+                            if (optionChosen == 1) {
+                                continuePlaying = false;
+                            }
+                        }
+
+                        
+                        break;
+                    case 12:
+                        go = false;
+                            go2 = true;
+                        break;
+                    case 13:
+                            User chosenUser = data.ChooseUser();
+
+                            currentUser.Friends.Add(chosenUser);
+                            chosenUser.Friends.Add(currentUser);
+                            break;
+                    case 14:
+                            User friendChosen = currentUser.ChooseFriend();
+                            Playlist chosenPlaylist = friendChosen.ChoosePlaylist();
+
+                            for(int i = 0; i < chosenPlaylist.Songs.Count; i++)
+                            {
+                                Console.WriteLine($"[{i}]: {chosenPlaylist.Songs[i].Title}");
+
+
+                            }
+                            break;
+                    case 15:
+
+                            for (int i = 0; i < currentUser.Friends.Count; i++) {
+
+                                Console.WriteLine($"[{i}]: {currentUser.Friends[i].Username}");
+                            }
+                            break;
+                    case 16:
+                            User friendChosen1 = currentUser.ChooseFriend();
+                            Playlist chosenPlaylist1 = friendChosen1.ChoosePlaylist();
+
+                            Playlist chosenPlaylist2 = currentUser.ChoosePlaylist();
+
+                            data.ComparePlaylists(chosenPlaylist1, chosenPlaylist2);
+
+
+                            break;
+                        case 17:
+                           Playlist playlist1 = currentUser.ChoosePlaylist();
+
+                            bool continuePlaying1 = true;
+                            Random rand1 = new Random();
+                            while (continuePlaying1)
+                            {
+                                currentUser.SongPlaying = playlist1.Songs[rand1.Next(playlist1.Songs.Count)];
+                                currentUser.SongPlaying.PlaySong();
+                                Console.WriteLine(
+                                    "[0] Next song\n" +
+                                    "[1] Stop");
+
+                                int optionChosen1 = int.Parse(Console.ReadLine());
+                                if (optionChosen1 == 1)
+                                {
+                                    continuePlaying1 = false;
+                                }
+                            }
+
+
+                            break;
+
+                    }
+            }
             }
 
         }

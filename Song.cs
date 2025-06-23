@@ -26,7 +26,8 @@ namespace Spotivy
                 Console.WriteLine(artist.Name);
             }
         }
-        public void PlaySong() {
+        public void PlaySong( ) {
+            
             Console.WriteLine($"Now playing: {title}");
         
         }
