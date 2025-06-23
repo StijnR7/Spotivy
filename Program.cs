@@ -96,8 +96,7 @@ namespace Spotivy
                         Console.WriteLine(
                             "Song found!\n" +
                             "[1] Play song\n" +
-                            "[2] Add song to playlist\n" +
-                            "[3] Details");
+                            "[2] Details\n");
                         int num = 0;
                         int.TryParse(Console.ReadLine(), out num);
                         if (num == 0) { Console.WriteLine("Invalid input"); break; }
@@ -110,17 +109,15 @@ namespace Spotivy
                                 song.PlaySong();
                                 break;
                             case 2:
-                                //Add user functionality
-                                break;
-                            case 3:
-                                Console.WriteLine(
-                                    $"Title: {song.Title}\n" +
-                                    $"Album: {song.Album.Title}\n" +
-                                    $"Genre: {song.Genre}\n" +
-                                    $"Artists: "
-                                    );
-                                song.ShowArtists();
-                                break;
+                                    Console.WriteLine(
+                                      $"Title: {song.Title}\n" +
+                                      $"Album: {song.Album.Title}\n" +
+                                      $"Genre: {song.Genre}\n" +
+                                      $"Artists: "
+                                      );
+                                    song.ShowArtists();
+                                    break;
+                            
 
                         }
 
